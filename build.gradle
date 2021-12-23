@@ -1,0 +1,23 @@
+plugins {
+  id "java"
+  id "eclipse"
+  id "io.quarkus"
+}
+
+group 'mailq'
+version '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+   mavenCentral()
+}
+
+dependencies {
+   implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+   implementation 'io.quarkus:quarkus-qute'
+   testImplementation 'io.quarkus:quarkus-junit5'
+}
