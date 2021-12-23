@@ -1,6 +1,7 @@
 package mailq;
 
 import javax.inject.Inject;
+import io.quarkus.qute.Template;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -9,11 +10,14 @@ import io.quarkus.runtime.annotations.QuarkusMain;
 public class QuarkusConsoleApplication implements QuarkusApplication {
 
   @Inject
-  XmlTemplateService templateService;
+  Template buggyTemplate;
 
   @Override
   public int run(String... args) throws Exception {
-    this.templateService.generateContent();
+    System.out.println("Before templating");
+    var rendered = this.buggyTemplate.data("bug", "Hello Quarkus & Associates").render();
+    System.out.println(rendered);
+    System.out.println("If you see this, it works");
     return 0;
   }
 
